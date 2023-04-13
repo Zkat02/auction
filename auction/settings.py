@@ -35,7 +35,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "vegetables.apps.VegetablesConfig",
+    # "vegetables.apps.VegetablesConfig",
+    "serverapp.apps.ServerappConfig",
     "rest_framework",
     "rest_framework.authtoken",
     'djoser',
@@ -104,7 +105,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "ru"
 
 TIME_ZONE = "UTC"
 
@@ -139,8 +140,8 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
         # default
-        # 'rest_framework.authentication.BasicAuthentication',
-        # 'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
     ),
 }
 
@@ -204,10 +205,10 @@ LOGGING = {
     },
 }
 
-DJOSER = {
-    'SERIALIZERS': {
-        'user': 'vegatables.serializers.ProfileSerializer',
-    },
-    'AUTH_USER_MODEL': 'vegatables.Profile',
-}
+# DJOSER = {
+#     'SERIALIZERS': {
+#         'user': 'vegetables.serializers.ProfileSerializer',
+#     },
+#     'AUTH_USER_MODEL': 'vegetables.Profile',
+# }
 

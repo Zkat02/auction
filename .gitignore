@@ -128,22 +128,3 @@ Control.ca-list
 Control.ca-bundle 
 Control.system-ca-bundle 
 GitHub.sublime-settings 
-
-# Visual Studio Code # 
-.vscode/* 
-!.vscode/settings.json 
-!.vscode/tasks.json 
-!.vscode/launch.json 
-!.vscode/extensions.json 
-.history
-
-#idea
-.idea/
-
-#node
-node_modules/*
-
-
-ER.png
-ER.svg
-\320\277\320\273\320\260\320\275 \320\272\321\203\321\200\321\201\320\260\321\207\320\260.docx

@@ -1,31 +1,29 @@
+# views.py
+
 from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.permissions import IsAdminUser
-
 from .models import *
 from .serializers import *
 from rest_framework import generics, viewsets, mixins
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
-
-
 from django.http import JsonResponse
-import logging
-
-logger = logging.getLogger(__name__)
-
-# views.py
 from rest_framework import status
 from rest_framework.response import Response
 from djoser.views import UserViewSet
-from .models import Users
+from .models import *
+import logging
 
 
-class UsersViewSet(UserViewSet):
+logger = logging.getLogger(__name__)
+
+
+class UserViewSet(UserViewSet):
     def perform_create(self, serializer):
         user = serializer.save()
-        Users.objects.create(user=user, country='', city='', address='', phone_number='')
+        Profile.objects.create(user=user, country='', city='', address='', phone_number='')
 
 
 # @api_view(['GET', 'POST'])
@@ -51,55 +49,55 @@ class UsersViewSet(UserViewSet):
 #         logger.exception("An error occurred: %s", e)
 
 
-class ProductsViewSet(mixins.CreateModelMixin,
+class ProductViewSet(mixins.CreateModelMixin,
                     mixins.RetrieveModelMixin,
                     mixins.UpdateModelMixin,
                     mixins.ListModelMixin,
                     GenericViewSet):
-    queryset = Products.objects.all()
-    serializer_class = ProductsSerializer
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
 
 
 
     permission_classes = (IsAdminUser)
 
 
-class UsersViewSet(mixins.CreateModelMixin,
-                    mixins.RetrieveModelMixin,
-                    mixins.UpdateModelMixin,
-                    mixins.ListModelMixin,
-                    GenericViewSet):
-    queryset = Users.objects.all()
-    serializer_class = UsersSerializer
+# class UsersViewSet(mixins.CreateModelMixin,
+#                     mixins.RetrieveModelMixin,
+#                     mixins.UpdateModelMixin,
+#                     mixins.ListModelMixin,
+#                     GenericViewSet):
+#     queryset = Users.objects.all()
+#     serializer_class = UsersSerializer
 
 class ProductsViewSet(mixins.CreateModelMixin,
                     mixins.RetrieveModelMixin,
                     mixins.UpdateModelMixin,
                     mixins.ListModelMixin,
                     GenericViewSet):
-    queryset = Products.objects.all()
-    serializer_class = ProductsSerializer
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
 
-class VendorsViewSet(mixins.CreateModelMixin,
+class VendorViewSet(mixins.CreateModelMixin,
                     mixins.RetrieveModelMixin,
                     mixins.UpdateModelMixin,
                     mixins.ListModelMixin,
                     GenericViewSet):
-    queryset = Vendors.objects.all()
-    serializer_class = VendorsSerializer
+    queryset = Vendor.objects.all()
+    serializer_class = VendorSerializer
 
-class AuctionsViewSet(mixins.CreateModelMixin,
+class AuctionViewSet(mixins.CreateModelMixin,
                     mixins.RetrieveModelMixin,
                     mixins.UpdateModelMixin,
                     mixins.ListModelMixin,
                     GenericViewSet):
-    queryset = Auctions.objects.all()
-    serializer_class = AuctionsSerializer
+    queryset = Auction.objects.all()
+    serializer_class = AuctionSerializer
 
-class BidsViewSet(mixins.CreateModelMixin,
+class BidViewSet(mixins.CreateModelMixin,
                     mixins.RetrieveModelMixin,
                     mixins.UpdateModelMixin,
                     mixins.ListModelMixin,
                     GenericViewSet):
-    queryset = Bids.objects.all()
-    serializer_class = BidsSerializer
+    queryset = Bid.objects.all()
+    serializer_class = BidSerializer
